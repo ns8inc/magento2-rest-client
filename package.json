@@ -4,7 +4,7 @@
     "email": "nouvak@gmail.com"
   },
   "bugs": {
-    "url": "https://github.com/nouvak/magento2-rest-client/issues"
+    "url": "https://github.com/ns8inc/magento2-rest-client/issues"
   },
   "dependencies": {
     "humps": "^1.1.0",
@@ -21,7 +21,7 @@
   "directories": {
     "lib": "./lib"
   },
-  "homepage": "https://github.com/nouvak/magento2-rest-client#readme",
+  "homepage": "https://github.com/ns8inc/magento2-rest-client#readme",
   "keywords": [
     "magento2",
     "REST",
@@ -29,13 +29,13 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "name": "magento2-rest-client",
+  "name": "@ns8/magento2-rest-client",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nouvak/magento2-rest-client.git"
+    "url": "git+https://github.com/ns8inc/magento2-rest-client.git"
   },
   "scripts": {
     "test": "test"
   },
-  "version": "0.0.13"
+  "version": "0.0.14"
 }
