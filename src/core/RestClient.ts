@@ -38,7 +38,6 @@ export default class RestClient {
       json: true,
       body: request_data.body,
     };
-    console.log(options)
     return new Promise((resolve, reject) => {
       request(options, (error, response, body) => {
         if (error) {
