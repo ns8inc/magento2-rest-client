@@ -29,16 +29,18 @@ export default class RestClient {
     this.logger = new Logger();
   }
   apiCall(request_data, request_token = '') {
+    const options = {
+      url: request_data.url,
+      method: request_data.method,
+      headers: request_token ? {
+        'Authorization': 'Bearer ' + request_token
+      } : this.oauth.toHeader(this.oauth.authorize(request_data, this.token)),
+      json: true,
+      body: request_data.body,
+    };
+    console.log(options)
     return new Promise((resolve, reject) => {
-      request({
-        url: request_data.url,
-        method: request_data.method,
-        headers: request_token ? {
-          'Authorization': 'Bearer ' + request_token
-        } : this.oauth.toHeader(this.oauth.authorize(request_data, this.token)),
-        json: true,
-        body: request_data.body,
-      }, (error, response, body) => {
+      request(options, (error, response, body) => {
         if (error) {
           this.logger.error('Error occured: ' + error);
           reject(error);

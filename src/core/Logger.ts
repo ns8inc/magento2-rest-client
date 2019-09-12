@@ -1,10 +1,9 @@
 var winston = require('winston');
-winston.emitErrs = true;
 
 export default class Logger {
   public logger: any;
   constructor() {
-    this.logger = new winston.Logger({
+    this.logger = new winston.createLogger({
       transports: [
         new winston.transports.Console({
           level: 'debug',

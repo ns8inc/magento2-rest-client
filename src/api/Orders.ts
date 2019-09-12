@@ -20,7 +20,7 @@ export default class Orders {
     return this.restClient.get('/orders/' + oderId + '?fields=increment_id');
   }
 
-  list(searchCriteria) {
+  list(searchCriteria = '') {
     var query = 'searchCriteria=' + searchCriteria;
     var endpointUrl = util.format('/orders?%s', query);
     return this.restClient.get(endpointUrl);
