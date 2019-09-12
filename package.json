@@ -36,7 +36,8 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc",
-    "test": "mocha --ui tdd --recursive ./test"
+    "test": "mocha --ui tdd --recursive ./test",
+    "postinstall": "npm run build"
   },
   "version": "0.1.1"
 }
