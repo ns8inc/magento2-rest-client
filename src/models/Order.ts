@@ -3,8 +3,15 @@ import { Payment } from "./Payment";
 import { ParentItemElement } from "./ParentItemElement";
 import { ItemExtensionAttributes } from "./ItemExtensionAttributes";
 import { Address } from "./Address";
+import { SearchCriteria } from "./SearchCriteria";
 
-export interface OrdersItem {
+export interface OrderData {
+  items: Order[];
+  search_criteria: SearchCriteria;
+  total_count: number;
+}
+
+export interface Order {
   applied_rule_ids?: string;
   base_currency_code: string;
   base_discount_amount: number;

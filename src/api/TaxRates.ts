@@ -1,5 +1,5 @@
 import RestClient from '../core/RestClient';
-var util = require('util');
+const util = require('util');
 
 export default class TaxRates {
   public restClient: RestClient;
@@ -9,7 +9,7 @@ export default class TaxRates {
   }
 
   list(rateId) {
-    var endpointUrl = util.format('/taxRates/%d', rateId);
+    const endpointUrl = util.format('/taxRates/%d', rateId);
     return this.restClient.get(endpointUrl);
   }
 
@@ -18,12 +18,12 @@ export default class TaxRates {
   }
 
   update(rateId, rateAttributes) {
-    var endpointUrl = util.format('/taxRates/%d', rateId);
+    const endpointUrl = util.format('/taxRates/%d', rateId);
     return this.restClient.put(endpointUrl, rateAttributes);
   }
 
   delete(rateId) {
-    var endpointUrl = util.format('/taxRates/%d', rateId);
+    const endpointUrl = util.format('/taxRates/%d', rateId);
     return this.restClient.delete(endpointUrl);
   }
 }

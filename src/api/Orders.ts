@@ -1,5 +1,7 @@
 import RestClient from '../core/RestClient';
-var util = require('util');
+import Convert from '../core/Convert';
+import { OrderData, Order } from '../models/Order';
+const util = require('util');
 
 export default class Orders {
   public restClient: RestClient;
@@ -16,17 +18,20 @@ export default class Orders {
    * @param oderId
    * @returns {Promise<{increment_id: String}>}
    */
-  incrementIdById(oderId) {
+  incrementIdById(oderId: number) {
     return this.restClient.get('/orders/' + oderId + '?fields=increment_id');
   }
 
-  list(searchCriteria = '') {
-    var query = 'searchCriteria=' + searchCriteria;
-    var endpointUrl = util.format('/orders?%s', query);
-    return this.restClient.get(endpointUrl);
+  async list(searchCriteria: string = ''): Promise<OrderData> {
+    const query = 'searchCriteria=' + searchCriteria;
+    const endpointUrl = util.format('/orders?%s', query);
+    const orders = await this.restClient.get(endpointUrl) as OrderData;
+    return orders;
   };
 
-  get(orderId) {
-    return this.restClient.get(util.format('/orders/%id', orderId));
+  async get(orderId: number): Promise<Order> {
+    const endpointUrl = util.format('/orders/%id', orderId);
+    const order = await this.restClient.get(endpointUrl) as Order;
+    return order;
   };
 }

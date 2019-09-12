@@ -1,5 +1,5 @@
 import RestClient from '../core/RestClient';
-var util = require('util');
+const util = require('util');
 
 export default class Transactions {
   public restClient: RestClient;
@@ -9,8 +9,8 @@ export default class Transactions {
   }
 
   list(searchCriteria) {
-    var query = 'searchCriteria=' + searchCriteria;
-    var endpointUrl = util.format('/transactions?%s', query);
+    const query = 'searchCriteria=' + searchCriteria;
+    const endpointUrl = util.format('/transactions?%s', query);
     return this.restClient.get(endpointUrl);
   };
 

@@ -1,4 +1,4 @@
-var winston = require('winston');
+const winston = require('winston');
 
 export default class Logger {
   public logger: any;

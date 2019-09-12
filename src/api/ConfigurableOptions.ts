@@ -1,5 +1,5 @@
 import RestClient from '../core/RestClient';
-var util = require('util');
+const util = require('util');
 
 export default class ConfigurableOptions {
   public restClient: RestClient;
@@ -9,7 +9,7 @@ export default class ConfigurableOptions {
   }
 
   list(sku) {
-    var endpointUrl = util.format('/configurable-products/%s/options/all', encodeURIComponent(sku));
+    const endpointUrl = util.format('/configurable-products/%s/options/all', encodeURIComponent(sku));
     return this.restClient.get(endpointUrl);
   }
 }

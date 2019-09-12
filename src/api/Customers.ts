@@ -1,5 +1,5 @@
 import RestClient from '../core/RestClient';
-var util = require('util');
+const util = require('util');
 
 export default class Customers {
   public restClient: RestClient;
@@ -21,11 +21,11 @@ export default class Customers {
   }
   orderHistory(requestToken) {
     return this.restClient.get('/customers/me', requestToken).then((result: any) => {
-      var query = 'searchCriteria=&searchCriteria[filterGroups][0][filters][0][field]=customer_email&' +
+      const query = 'searchCriteria=&searchCriteria[filterGroups][0][filters][0][field]=customer_email&' +
         'searchCriteria[filterGroups][0][filters][0][value]=' + encodeURIComponent(result.email) + '&' +
         'searchCriteria[filterGroups][0][filters][0][condition_type]=eq&searchCriteria[pageSize]=20&' +
         'searchCriteria[sortOrders][0][field]=entity_id&searchCriteria[sortOrders][0][direction]=desc';
-      var endpointUrl = util.format('/orders?%s', query);
+      const endpointUrl = util.format('/orders?%s', query);
       return this.restClient.get(endpointUrl);
     })
   }

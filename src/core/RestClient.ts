@@ -28,7 +28,7 @@ export default class RestClient {
     };
     this.logger = new Logger();
   }
-  apiCall(request_data, request_token = '') {
+  apiCall(request_data, request_token = ''): any {
     const options = {
       url: request_data.url,
       method: request_data.method,
@@ -46,7 +46,7 @@ export default class RestClient {
           reject(error);
           return;
         } else if (!this.httpCallSucceeded(response)) {
-          var errorMessage = 'HTTP ERROR ' + response.code;
+          let errorMessage = 'HTTP ERROR ' + response.code;
           if (body && body.hasOwnProperty('message'))
             errorMessage = this.errorString(body.message, body.hasOwnProperty('parameters') ? body.parameters : {});
 
@@ -81,13 +81,13 @@ export default class RestClient {
       return message;
     }
     if (parameters instanceof Array) {
-      for (var i = 0; i < parameters.length; i++) {
-        var parameterPlaceholder = '%' + (i + 1).toString();
+      for (let i = 0; i < parameters.length; i++) {
+        const parameterPlaceholder = '%' + (i + 1).toString();
         message = message.replace(parameterPlaceholder, parameters[i]);
       }
     } else if (parameters instanceof Object) {
-      for (var key in parameters) {
-        var parameterPlaceholder = '%' + key;
+      for (let key in parameters) {
+        const parameterPlaceholder = '%' + key;
         message = message.replace(parameterPlaceholder, parameters[key]);
       }
     }
@@ -96,7 +96,7 @@ export default class RestClient {
   }
 
   get(resourceUrl, request_token = '') {
-    var request_data = {
+    const request_data = {
       url: this.createUrl(resourceUrl),
       method: 'GET'
     };
@@ -108,7 +108,7 @@ export default class RestClient {
   }
 
   post(resourceUrl, data = {}, request_token = '') {
-    var request_data = {
+    const request_data = {
       url: this.createUrl(resourceUrl),
       method: 'POST',
       body: data
@@ -117,7 +117,7 @@ export default class RestClient {
   }
 
   put(resourceUrl, data = {}, request_token = '') {
-    var request_data = {
+    const request_data = {
       url: this.createUrl(resourceUrl),
       method: 'PUT',
       body: data
@@ -126,7 +126,7 @@ export default class RestClient {
   }
 
   delete(resourceUrl, request_token = '') {
-    var request_data = {
+    const request_data = {
       url: this.createUrl(resourceUrl),
       method: 'DELETE'
     };

@@ -1,5 +1,5 @@
 import RestClient from '../core/RestClient';
-var util = require('util');
+const util = require('util');
 
 export default class Categories {
 	public restClient: RestClient;
@@ -17,12 +17,12 @@ export default class Categories {
   }
 
   update(categoryId, categoryAttributes) {
-    var endpointUrl = util.format('/categories/%d', categoryId);
+    const endpointUrl = util.format('/categories/%d', categoryId);
     return this.restClient.put(endpointUrl, categoryAttributes);
   }
 
   delete(categoryId) {
-    var endpointUrl = util.format('/categories/%d', categoryId);
+    const endpointUrl = util.format('/categories/%d', categoryId);
     return this.restClient.delete(endpointUrl);
   }
 }

@@ -1,4 +1,4 @@
-var util = require('util');
+const util = require('util');
 import RestClient from '../core/RestClient';
 
 export default class Attributes {
@@ -9,8 +9,8 @@ export default class Attributes {
   }
 
   list(searchCriteria) {
-    var query = 'searchCriteria=' + searchCriteria;
-    var endpointUrl = util.format('/products/attributes?%s', query);
+    const query = 'searchCriteria=' + searchCriteria;
+    const endpointUrl = util.format('/products/attributes?%s', query);
     return this.restClient.get(endpointUrl);
   }
 
@@ -19,12 +19,12 @@ export default class Attributes {
   }
 
   update(attributeId, categoryAttributes) {
-    var endpointUrl = util.format('/products/attributes/%d', attributeId);
+    const endpointUrl = util.format('/products/attributes/%d', attributeId);
     return this.restClient.put(endpointUrl, categoryAttributes);
   }
 
   delete(attributeId) {
-    var endpointUrl = util.format('/products/attributes/%d', attributeId);
+    const endpointUrl = util.format('/products/attributes/%d', attributeId);
     return this.restClient.delete(endpointUrl);
   }
 }

@@ -1,5 +1,5 @@
 import RestClient from '../core/RestClient';
-var util = require('util');
+const util = require('util');
 
 export default class StockItems {
   public restClient: RestClient;
@@ -9,13 +9,13 @@ export default class StockItems {
   }
 
   list(sku) {
-    var endpointUrl = util.format('/stockItems/%s', encodeURIComponent(sku));
+    const endpointUrl = util.format('/stockItems/%s', encodeURIComponent(sku));
     return this.restClient.get(endpointUrl);
   }
 
   // MSI
   getSalableQty(sku, stockId) {
-    var endpointUrl = util.format(
+    const endpointUrl = util.format(
       '/inventory/get-product-salable-quantity/%s/%d',
       encodeURIComponent(sku),
       encodeURIComponent(stockId)
@@ -25,7 +25,7 @@ export default class StockItems {
 
   // MSI
   isSalable(sku, stockId) {
-    var endpointUrl = util.format(
+    const endpointUrl = util.format(
       '/inventory/is-product-salable/%s/%d',
       encodeURIComponent(sku),
       encodeURIComponent(stockId)

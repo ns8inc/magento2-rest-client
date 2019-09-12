@@ -26,7 +26,7 @@ export default class Reviews {
   }
 
   delete(reviewId) {
-    var endpointUrl = util.format('/reviews/%d', reviewId);
+    const endpointUrl = util.format('/reviews/%d', reviewId);
     return this.restClient.delete(endpointUrl);
   }
 }
