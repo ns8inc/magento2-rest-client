@@ -29,8 +29,8 @@ export default class Orders {
     return orders;
   };
 
-  async get(orderId: number): Promise<Order> {
-    const endpointUrl = util.format('/orders/%id', orderId);
+  async get(orderId: string): Promise<Order> {
+    const endpointUrl = util.format('/orders/%d', orderId);
     const order = await this.restClient.get(endpointUrl) as Order;
     return order;
   };

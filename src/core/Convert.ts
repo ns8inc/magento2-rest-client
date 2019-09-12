@@ -1,4 +1,3 @@
-import Orders from '../api/Orders';
 import { Order, OrderData } from '../models/Order';
 import { Address } from '../models/Address';
 import { ItemExtensionAttributes } from '../models/ItemExtensionAttributes';
