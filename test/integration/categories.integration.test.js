@@ -50,7 +50,7 @@ suite('categories tests', function () {
             })
             .then(done, done);
     });
-    
+
     test('delete category test', function (done) {
         client.categories.delete(23)
             .then(function (result) {

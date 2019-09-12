@@ -76,4 +76,3 @@ suite('products media tests', function () {
             .then(done, done);
     })
 });
-

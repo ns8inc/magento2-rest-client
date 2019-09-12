@@ -65,4 +65,3 @@ suite('products tests', function () {
             .then(done, done);
     })
 });
-

@@ -1,25 +1,25 @@
 {
   "author": {
-    "name": "Marko Novak",
-    "email": "nouvak@gmail.com"
+    "name": "NS8, Inc",
+    "email": "apps@ns8.com"
   },
   "bugs": {
     "url": "https://github.com/ns8inc/magento2-rest-client/issues"
   },
   "dependencies": {
-    "humps": "^1.1.0",
-    "oauth-1.0a": "^1.0.1",
-    "request": "^2.72.0",
-    "winston": "^2.2.0"
+    "oauth-1.0a": "^2.2.6",
+    "request": "^2.88.0",
+    "winston": "^3.2.1"
   },
   "deprecated": false,
   "description": "REST client for accessing Magento 2 functionality.",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^2.4.5"
+    "@types/node": "^12.7.5",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0"
   },
   "directories": {
-    "lib": "./lib"
+    "dist": "./dist"
   },
   "homepage": "https://github.com/ns8inc/magento2-rest-client#readme",
   "keywords": [
@@ -35,7 +35,8 @@
     "url": "git+https://github.com/ns8inc/magento2-rest-client.git"
   },
   "scripts": {
-    "test": "test"
+    "build": "rimraf dist && tsc",
+    "test": "mocha --ui tdd --recursive ./test"
   },
-  "version": "0.0.17"
+  "version": "0.1.0"
 }
