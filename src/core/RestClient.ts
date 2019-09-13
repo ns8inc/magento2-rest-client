@@ -1,6 +1,24 @@
 import Logger from "./Logger";
+import Attributes from "../api/Attributes";
+import Categories from "../api/Categories";
+import Products from "../api/Products";
+import ProductMedia from "../api/ProductMedia";
+import CategoryProducts from "../api/CategoryProducts";
+import ConfigurableChildren from "../api/ConfigurableChildren";
+import ConfigurableOptions from "../api/ConfigurableOptions";
+import StockItems from "../api/StockItems";
+import TaxRates from "../api/TaxRates";
+import TaxRules from "../api/TaxRules";
+import Customers from "../api/Customers";
+import Cart from "../api/Cart";
+import Orders from "../api/Orders";
+import Transactions from "../api/Transactions";
+import Directory from "../api/Directory";
+import Reviews from "../api/Reviews";
 const OAuth = require('oauth-1.0a');
 const request = require('request');
+
+const MAGENTO_API_VERSION = 'V1';
 
 export default class RestClient {
   public instance: any;
@@ -10,11 +28,26 @@ export default class RestClient {
   public token: any;
   public errorMessage: any;
   public logger: Logger;
-  constructor(options) {
-    this.instance = {};
+  public attributes: Attributes;
+  public categories: Categories;
+  public products: Products;
+  public productMedia: ProductMedia;
+  public categoryProducts: CategoryProducts;
+  public configurableChildren: ConfigurableChildren;
+  public configurableOptions: ConfigurableOptions;
+  public stockItems: StockItems;
+  public taxRates: TaxRates;
+  public taxRules: TaxRules;
+  public customers: Customers;
+  public cart: Cart;
+  public orders: Orders;
+  public transactions: Transactions;
+  public directory: Directory;
+  public reviews: Reviews;
 
+  constructor(options) {
     this.serverUrl = options.url;
-    this.apiVersion = options.version;
+    this.apiVersion = MAGENTO_API_VERSION;
     this.oauth = OAuth({
       consumer: {
         public: options.consumerKey,
@@ -27,6 +60,23 @@ export default class RestClient {
       secret: options.accessTokenSecret
     };
     this.logger = new Logger();
+
+    this.attributes = new Attributes(this);
+    this.categories = new Categories(this);
+    this.products = new Products(this);
+    this.productMedia = new ProductMedia(this);
+    this.categoryProducts = new CategoryProducts(this);
+    this.configurableChildren = new ConfigurableChildren(this);
+    this.configurableOptions = new ConfigurableOptions(this);
+    this.stockItems = new StockItems(this);
+    this.taxRates = new TaxRates(this);
+    this.taxRules = new TaxRules(this);
+    this.customers = new Customers(this);
+    this.cart = new Cart(this);
+    this.orders = new Orders(this);
+    this.transactions = new Transactions(this);
+    this.directory = new Directory(this);
+    this.reviews = new Reviews(this);
   }
   apiCall(request_data, request_token = ''): any {
     const options = {
