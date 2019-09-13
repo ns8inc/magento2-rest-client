@@ -1,4 +1,4 @@
-import { AppliedTax } from "./AppliedTax";
+import { AppliedTax } from '.';
 export interface ItemAppliedTax {
   type: string;
   applied_taxes: AppliedTax[];

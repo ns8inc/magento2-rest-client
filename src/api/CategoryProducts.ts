@@ -1,8 +1,8 @@
-import RestClient from '../core/RestClient';
+import { RestClient } from '..';
 const util = require('util');
 
-export default class CategoryProducts {
-	public restClient: RestClient;
+export class CategoryProducts {
+  public restClient: RestClient;
 
   constructor(restClient: RestClient) {
     this.restClient = restClient;

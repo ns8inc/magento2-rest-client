@@ -1,7 +1,7 @@
 const util = require('util');
-import RestClient from '../core/RestClient';
+import { RestClient } from '..';
 
-export default class Attributes {
+export class Attributes {
   public restClient: RestClient;
 
   constructor(restClient: RestClient) {

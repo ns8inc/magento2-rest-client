@@ -1,26 +1,29 @@
-import Logger from "./Logger";
-import Attributes from "../api/Attributes";
-import Categories from "../api/Categories";
-import Products from "../api/Products";
-import ProductMedia from "../api/ProductMedia";
-import CategoryProducts from "../api/CategoryProducts";
-import ConfigurableChildren from "../api/ConfigurableChildren";
-import ConfigurableOptions from "../api/ConfigurableOptions";
-import StockItems from "../api/StockItems";
-import TaxRates from "../api/TaxRates";
-import TaxRules from "../api/TaxRules";
-import Customers from "../api/Customers";
-import Cart from "../api/Cart";
-import Orders from "../api/Orders";
-import Transactions from "../api/Transactions";
-import Directory from "../api/Directory";
-import Reviews from "../api/Reviews";
+import { Logger } from '.';
+import {
+  Attributes,
+  Categories,
+  Products,
+  ProductMedia,
+  CategoryProducts,
+  ConfigurableChildren,
+  ConfigurableOptions,
+  StockItems,
+  TaxRates,
+  TaxRules,
+  Customers,
+  Cart,
+  Transactions,
+  Directory,
+  Reviews,
+  Orders
+} from '..';
+
 const OAuth = require('oauth-1.0a');
 const request = require('request');
 
 const MAGENTO_API_VERSION = 'V1';
 
-export default class RestClient {
+export class RestClient {
   public instance: any;
   public serverUrl: any;
   public apiVersion: any;

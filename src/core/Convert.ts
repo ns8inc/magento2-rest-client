@@ -1,22 +1,25 @@
-import { Order, OrderData } from '../models/Order';
-import { Address } from '../models/Address';
-import { ItemExtensionAttributes } from '../models/ItemExtensionAttributes';
-import { AppliedTax } from '../models/AppliedTax';
-import { ItemAppliedTax } from '../models/ItemAppliedTax';
-import { PaymentAdditionalInfo } from '../models/PaymentAdditionalInfo';
-import { ShippingAssignment } from '../models/ShippingAssignment';
-import { ParentItemElement } from '../models/ParentItemElement';
-import { ProductOption } from '../models/ProductOption';
-import { ProductOptionExtensionAttributes } from '../models/ProductOptionExtensionAttributes';
-import { ConfigurableItemOption } from '../models/ConfigurableItemOption';
-import { Shipping } from '../models/Shipping';
-import { Payment } from '../models/Payment';
-import { StatusHistory } from '../models/StatusHistory';
-import { SearchCriteria } from '../models/SearchCriteria';
+import {
+  Address,
+  OrderData,
+  Order,
+  ItemExtensionAttributes,
+  AppliedTax,
+  ItemAppliedTax,
+  PaymentAdditionalInfo,
+  ShippingAssignment,
+  ParentItemElement,
+  ProductOption,
+  ProductOptionExtensionAttributes,
+  ConfigurableItemOption,
+  Shipping,
+  Payment,
+  StatusHistory,
+  SearchCriteria
+} from '..';
 
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
-export default class Convert {
+export class Convert {
   public static toOrderData(json: string): OrderData {
     return cast(JSON.parse(json), r('OrderData'));
   }

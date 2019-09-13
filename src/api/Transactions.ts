@@ -1,7 +1,7 @@
-import RestClient from '../core/RestClient';
+import { RestClient } from '..';
 const util = require('util');
 
-export default class Transactions {
+export class Transactions {
   public restClient: RestClient;
 
   constructor(restClient: RestClient) {

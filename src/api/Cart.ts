@@ -1,7 +1,7 @@
-import RestClient from '../core/RestClient';
+import { RestClient } from '..';
 
-export default class Cart {
-	public restClient: RestClient;
+export class Cart {
+  public restClient: RestClient;
 
   constructor(restClient: RestClient) {
     this.restClient = restClient;

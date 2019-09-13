@@ -1,5 +1,4 @@
-import { Shipping } from "./Shipping";
-import { ParentItemElement } from "./ParentItemElement";
+import { ParentItemElement, Shipping } from '.';
 export interface ShippingAssignment {
   shipping: Shipping;
   items: ParentItemElement[];

@@ -1,9 +1,11 @@
-import { StatusHistory } from "./StatusHistory";
-import { Payment } from "./Payment";
-import { ParentItemElement } from "./ParentItemElement";
-import { ItemExtensionAttributes } from "./ItemExtensionAttributes";
-import { Address } from "./Address";
-import { SearchCriteria } from "./SearchCriteria";
+import {
+  Address,
+  SearchCriteria,
+  ParentItemElement,
+  Payment,
+  StatusHistory,
+  ItemExtensionAttributes
+} from '.';
 
 export interface OrderData {
   items: Order[];

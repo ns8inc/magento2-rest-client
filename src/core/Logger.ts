@@ -1,6 +1,6 @@
 const winston = require('winston');
 
-export default class Logger {
+export class Logger {
   public logger: any;
   constructor() {
     this.logger = new winston.createLogger({

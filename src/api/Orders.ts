@@ -1,9 +1,8 @@
-import RestClient from '../core/RestClient';
-import Convert from '../core/Convert';
-import { OrderData, Order } from '../models/Order';
+import { RestClient, Convert } from '../core';
+import { OrderData, Order } from '../models';
 const util = require('util');
 
-export default class Orders {
+export class Orders {
   public restClient: RestClient;
 
   constructor(restClient: RestClient) {

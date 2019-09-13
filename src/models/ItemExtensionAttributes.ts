@@ -1,7 +1,5 @@
-import { ShippingAssignment } from "./ShippingAssignment";
-import { PaymentAdditionalInfo } from "./PaymentAdditionalInfo";
-import { ItemAppliedTax } from "./ItemAppliedTax";
-import { AppliedTax } from "./AppliedTax";
+import { ShippingAssignment, PaymentAdditionalInfo, AppliedTax, ItemAppliedTax } from '.';
+
 export interface ItemExtensionAttributes {
   shipping_assignments: ShippingAssignment[];
   payment_additional_info: PaymentAdditionalInfo[];

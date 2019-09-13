@@ -1,8 +1,8 @@
-import RestClient from '../core/RestClient';
+import { RestClient } from '..';
 const util = require('util');
 
-export default class ConfigurableChildren {
-	public restClient: RestClient;
+export class ConfigurableChildren {
+  public restClient: RestClient;
 
   constructor(restClient: RestClient) {
     this.restClient = restClient;

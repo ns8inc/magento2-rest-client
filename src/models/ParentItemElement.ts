@@ -1,4 +1,4 @@
-import { ProductOption } from "./ProductOption";
+import { ProductOption } from '.';
 export interface ParentItemElement {
   amount_refunded: number;
   applied_rule_ids?: string;
