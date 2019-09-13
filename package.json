@@ -42,5 +42,5 @@
     "pretest": "npm run build",
     "test": "mocha --ui tdd --recursive ./test"
   },
-  "version": "0.1.4"
+  "version": "0.1.5"
 }
