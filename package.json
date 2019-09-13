@@ -44,5 +44,5 @@
     "install": "npm run build",
     "test": "mocha --ui tdd --recursive ./test"
   },
-  "version": "0.1.6"
+  "version": "0.1.7"
 }
