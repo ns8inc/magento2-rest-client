@@ -16,7 +16,8 @@
   "devDependencies": {
     "@types/node": "^12.7.5",
     "chai": "^4.2.0",
-    "mocha": "^6.2.0"
+    "mocha": "^6.2.0",
+    "rimraf": "^3.0.0"
   },
   "directories": {
     "dist": "./dist"
@@ -35,9 +36,11 @@
     "url": "git+https://github.com/ns8inc/magento2-rest-client.git"
   },
   "scripts": {
-    "build": "rimraf dist && tsc",
-    "test": "mocha --ui tdd --recursive ./test",
-    "postinstall": "npm run build"
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "clean": "rimraf dist",
+    "pretest": "npm run build",
+    "test": "mocha --ui tdd --recursive ./test"
   },
   "version": "0.1.4"
 }
