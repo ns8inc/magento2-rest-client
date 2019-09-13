@@ -39,7 +39,6 @@
   },
   "scripts": {
     "prebuild": "npm run clean",
-    "prepare": "npm run clean && npm run build",
     "build": "tsc",
     "clean": "rimraf dist",
     "install": "npm run build",
