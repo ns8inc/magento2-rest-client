@@ -1,8 +1,5 @@
 {
-  "author": {
-    "name": "NS8, Inc",
-    "email": "apps@ns8.com"
-  },
+  "author": "NS8, Inc <apps@ns8.com>",
   "bugs": {
     "url": "https://github.com/ns8inc/magento2-rest-client/issues"
   },
@@ -18,31 +15,34 @@
     "chai": "^4.2.0",
     "mocha": "^6.2.0",
     "rimraf": "^3.0.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.3",
+    "yarn": "^1.17.3"
   },
   "directories": {
     "dist": "./dist"
   },
   "homepage": "https://github.com/ns8inc/magento2-rest-client#readme",
   "keywords": [
+    "magento",
     "magento2",
-    "REST",
-    "API"
+    "magento 2",
+    "rest",
+    "api",
+    "sdk",
+    "client"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "name": "@ns8/magento2-rest-client",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ns8inc/magento2-rest-client.git"
-  },
+  "repository": "git+https://github.com/ns8inc/magento2-rest-client.git",
   "scripts": {
-    "prebuild": "npm run clean",
+    "prebuild": "yarn clean",
     "build": "tsc",
     "clean": "rimraf dist",
-    "install": "npm run build",
+    "install": "yarn build",
     "test": "mocha --ui tdd --recursive ./test"
   },
-  "version": "0.1.7"
+  "version": "0.1.7",
+  "private": false
 }
