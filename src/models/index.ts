@@ -13,3 +13,4 @@ export * from './SearchCriteria';
 export * from './Shipping';
 export * from './ShippingAssignment';
 export * from './StatusHistory';
+export * from './Transaction';
