@@ -45,7 +45,7 @@ export class Cart {
       return this.restClient.put('/carts/' + cartId + '/coupons/' + coupon);
     } else {
       if (customerToken && Cart.isNumeric(cartId)) {
-        return this.restClient.put('/carts/mine/coupons/' + coupon, null, customerToken);
+        return this.restClient.put('/carts/mine/coupons/' + coupon, {}, customerToken);
       } else {
         return this.restClient.put('/guest-carts/' + cartId + '/coupons/' + coupon);
       }
