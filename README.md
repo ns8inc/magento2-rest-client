@@ -12,7 +12,7 @@ This module is used by the [Vue Storefront - first Progressive Web App for eComm
 The library can be installed using the Npm package manager:
 
 ```
-    npm install --save @ns8/magento2-rest-client
+    yarn add @ns8/magento2-rest-client
 ```
 
 ## Usage
