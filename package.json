@@ -40,7 +40,7 @@
     "prebuild": "yarn clean",
     "build": "tsc",
     "clean": "rimraf dist",
-    "install": "yarn build",
+    "prepack": "yarn build",
     "test": "mocha --ui tdd --recursive ./test"
   },
   "version": "0.1.8",
