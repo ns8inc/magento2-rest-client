@@ -10,7 +10,7 @@ export interface Transaction {
   additionalInformation: string[] | null;
   createdAt: string;
   childTransactions: Transaction[];
-  extensionAttributes: ExtensionAttributes | null;
+  extensionAttributes: TransactionExtensionAttributes | null;
 }
 
 export enum TxnType {
@@ -22,4 +22,4 @@ export enum TxnType {
   Refund = 'refund'
 }
 
-export interface ExtensionAttributes {}
+export interface TransactionExtensionAttributes { }
