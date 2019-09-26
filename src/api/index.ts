@@ -1,3 +1,4 @@
+export * from './Addresses';
 export * from './Attributes';
 export * from './Cart';
 export * from './Categories';

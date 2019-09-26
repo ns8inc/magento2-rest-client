@@ -1,5 +1,6 @@
 import { Logger, RestClientOptions } from '.';
 import {
+  Addresses,
   Attributes,
   Categories,
   Products,
@@ -31,6 +32,7 @@ export class RestClient {
   public token: any;
   public errorMessage: any;
   public logger: Logger;
+  public addresses: Addresses;
   public attributes: Attributes;
   public categories: Categories;
   public products: Products;
@@ -80,6 +82,7 @@ export class RestClient {
     this.transactions = new Transactions(this);
     this.directory = new Directory(this);
     this.reviews = new Reviews(this);
+    this.addresses = new Addresses(this);
   }
   apiCall(request_data, request_token = ''): any {
     const options = {

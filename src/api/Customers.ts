@@ -1,4 +1,4 @@
-import { RestClient } from '..';
+import { Customer, RestClient } from '..';
 const util = require('util');
 
 export class Customers {
@@ -11,6 +11,12 @@ export class Customers {
   create(customerData) {
     return this.restClient.post('/customers', customerData);
   }
+
+  async get(customerId: string): Promise<Customer> {
+    const endpointUrl = util.format('/customers/%d', customerId);
+    const order = await this.restClient.get(endpointUrl);
+    return order;
+  };
 
   token(loginData) {
     return this.restClient.consumerToken(loginData);

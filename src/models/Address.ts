@@ -1,3 +1,5 @@
+import { Region } from '.';
+
 export interface Address {
   address_type: string;
   city: string;
@@ -9,7 +11,7 @@ export interface Address {
   lastname: string;
   parent_id: number;
   postcode: string;
-  region: string;
+  region: Region;
   region_code: string;
   region_id: number;
   street: string[];
