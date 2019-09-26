@@ -1,4 +1,4 @@
-import { Logger } from '.';
+import { Logger, RestClientOptions } from '.';
 import {
   Attributes,
   Categories,
@@ -48,7 +48,7 @@ export class RestClient {
   public directory: Directory;
   public reviews: Reviews;
 
-  constructor(options) {
+  constructor(options: RestClientOptions) {
     this.serverUrl = options.url;
     this.apiVersion = MAGENTO_API_VERSION;
     this.oauth = OAuth({
