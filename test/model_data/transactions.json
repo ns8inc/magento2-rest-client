@@ -11,10 +11,49 @@
       "additional_information": [],
       "created_at": "2019-09-27 16:10:47",
       "child_transactions": []
+    },
+    {
+      "transaction_id": 2,
+      "order_id": 8,
+      "payment_id": 8,
+      "txn_id": "60128117211",
+      "parent_txn_id": null,
+      "txn_type": "authorization",
+      "is_closed": 0,
+      "additional_information": [
+        "60128117211",
+        "{\"accountType\":\"MasterCard\",\"authCode\":\"1KAV28\",\"avsResultCode\":\"Y\",\"cvvResultCode\":\"P\",\"cavvResultCode\":\"2\"}"
+      ],
+      "created_at": "2019-10-01 15:32:20",
+      "child_transactions": []
+    },
+    {
+      "transaction_id": 3,
+      "order_id": 9,
+      "payment_id": 9,
+      "txn_id": "ase9akk5",
+      "parent_txn_id": null,
+      "txn_type": "capture",
+      "is_closed": 0,
+      "additional_information": [],
+      "created_at": "2019-10-01 15:35:31",
+      "child_transactions": []
+    },
+    {
+      "transaction_id": 4,
+      "order_id": 10,
+      "payment_id": 10,
+      "txn_id": "mcxj6t6s",
+      "parent_txn_id": null,
+      "txn_type": "capture",
+      "is_closed": 0,
+      "additional_information": [],
+      "created_at": "2019-10-01 15:35:33",
+      "child_transactions": []
     }
   ],
   "search_criteria": {
     "filter_groups": []
   },
-  "total_count": 1
+  "total_count": 4
 }

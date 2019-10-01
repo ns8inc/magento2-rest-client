@@ -113,6 +113,25 @@
       "city": "Las Vegas",
       "firstname": "Veronica",
       "lastname": "Costello"
+    },
+    {
+      "id": 6,
+      "customer_id": 1,
+      "region": {
+        "region_code": "NV",
+        "region": "Nevada",
+        "region_id": 39
+      },
+      "region_id": 39,
+      "country_id": "US",
+      "street": [
+        "241 W. Charleston Blvd, Suite 111"
+      ],
+      "telephone": "0123456789",
+      "postcode": "89102",
+      "city": "Las Vegas",
+      "firstname": "Veronica",
+      "lastname": "Costello"
     }
   ],
   "disable_auto_group_change": 0,
