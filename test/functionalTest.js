@@ -34,7 +34,7 @@ client.transactions.list()
       fs.writeFileSync('test/model_data/transactions/transactions.json', JSON.stringify(data, null, 2))
       data.items.forEach((item) => {
         try {
-          client.transactions.get(item.transaction_id)
+          client.transactions.getByTransactionId(item.txn_id)
             .then(function (data) {
               fs.writeFileSync(`test/model_data/transactions/transaction_${item.transaction_id}.json`, JSON.stringify(data, null, 2))
             })
