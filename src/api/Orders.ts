@@ -1,6 +1,6 @@
 import { RestClient, Convert } from '../core';
 import { OrderData, Order } from '../models';
-const util = require('util');
+import { format } from 'util';
 
 export class Orders {
   public restClient: RestClient;
@@ -24,13 +24,13 @@ export class Orders {
 
   async list(searchCriteria: string = ''): Promise<OrderData> {
     const query = 'searchCriteria=' + searchCriteria;
-    const endpointUrl = util.format('/orders?%s', query);
+    const endpointUrl = format('/orders?%s', query);
     const orders = await this.restClient.get(endpointUrl) as OrderData;
     return orders;
   };
 
   async get(orderId: number): Promise<Order> {
-    const endpointUrl = util.format('/orders/%d', orderId);
+    const endpointUrl = format('/orders/%d', orderId);
     const order = await this.restClient.get(endpointUrl) as Order;
     return order;
   };

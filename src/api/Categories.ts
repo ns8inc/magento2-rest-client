@@ -1,5 +1,5 @@
 import { RestClient } from '..';
-const util = require('util');
+import { format } from 'util';
 
 export class Categories {
   public restClient: RestClient;
@@ -17,12 +17,12 @@ export class Categories {
   }
 
   update(categoryId, categoryAttributes) {
-    const endpointUrl = util.format('/categories/%d', categoryId);
+    const endpointUrl = format('/categories/%d', categoryId);
     return this.restClient.put(endpointUrl, categoryAttributes);
   }
 
   delete(categoryId) {
-    const endpointUrl = util.format('/categories/%d', categoryId);
+    const endpointUrl = format('/categories/%d', categoryId);
     return this.restClient.delete(endpointUrl);
   }
 }

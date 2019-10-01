@@ -1,4 +1,4 @@
-import util from 'util';
+import { format } from 'util';
 import { RestClient } from '..';
 
 export class Attributes {
@@ -10,7 +10,7 @@ export class Attributes {
 
   list(searchCriteria: string) {
     const query = 'searchCriteria=' + searchCriteria;
-    const endpointUrl = util.format('/products/attributes?%s', query);
+    const endpointUrl = format('/products/attributes?%s', query);
     return this.restClient.get(endpointUrl);
   }
 
@@ -19,12 +19,12 @@ export class Attributes {
   }
 
   update(id: number, categoryAttributes: any) {
-    const endpointUrl = util.format('/products/attributes/%d', id);
+    const endpointUrl = format('/products/attributes/%d', id);
     return this.restClient.put(endpointUrl, categoryAttributes);
   }
 
   delete(id: number) {
-    const endpointUrl = util.format('/products/attributes/%d', id);
+    const endpointUrl = format('/products/attributes/%d', id);
     return this.restClient.delete(endpointUrl);
   }
 }

@@ -1,5 +1,5 @@
 import { RestClient } from '..';
-const util = require('util');
+import { format } from 'util';
 
 export class CategoryProducts {
   public restClient: RestClient;
@@ -8,7 +8,7 @@ export class CategoryProducts {
     this.restClient = restClient;
   }
   list(categoryId) {
-    const endpointUrl = util.format('/categories/%d/products', categoryId);
+    const endpointUrl = format('/categories/%d/products', categoryId);
     return this.restClient.get(endpointUrl);
   }
 }

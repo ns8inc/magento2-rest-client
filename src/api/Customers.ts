@@ -1,5 +1,5 @@
 import { Customer, RestClient } from '..';
-const util = require('util');
+import { format } from 'util';
 
 export class Customers {
   public restClient: RestClient;
@@ -13,7 +13,7 @@ export class Customers {
   }
 
   async get(customerId: number): Promise<Customer> {
-    const endpointUrl = util.format('/customers/%d', customerId);
+    const endpointUrl = format('/customers/%d', customerId);
     const order = await this.restClient.get(endpointUrl);
     return order;
   };
@@ -31,7 +31,7 @@ export class Customers {
         'searchCriteria[filterGroups][0][filters][0][value]=' + encodeURIComponent(result.email) + '&' +
         'searchCriteria[filterGroups][0][filters][0][condition_type]=eq&searchCriteria[pageSize]=20&' +
         'searchCriteria[sortOrders][0][field]=entity_id&searchCriteria[sortOrders][0][direction]=desc';
-      const endpointUrl = util.format('/orders?%s', query);
+      const endpointUrl = format('/orders?%s', query);
       return this.restClient.get(endpointUrl);
     })
   }

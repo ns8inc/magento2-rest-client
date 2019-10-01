@@ -1,5 +1,5 @@
 import { RestClient } from '..';
-const util = require('util');
+import { format } from 'util';
 
 export class Reviews {
   public restClient: RestClient;
@@ -9,13 +9,13 @@ export class Reviews {
   }
 
   getByProductSku(sku) {
-    const endpointUrl = util.format('/products/%s/review', encodeURIComponent(sku));
+    const endpointUrl = format('/products/%s/review', encodeURIComponent(sku));
     return this.restClient.get(endpointUrl);
   };
 
   list = function (searchCriteria) {
     const query = 'searchCriteria=' + searchCriteria;
-    const endpointUrl = util.format('/reviews/?%s', query);
+    const endpointUrl = format('/reviews/?%s', query);
     return this.restClient.get(endpointUrl);
   };
 
@@ -26,7 +26,7 @@ export class Reviews {
   }
 
   delete(reviewId) {
-    const endpointUrl = util.format('/reviews/%d', reviewId);
+    const endpointUrl = format('/reviews/%d', reviewId);
     return this.restClient.delete(endpointUrl);
   }
 }

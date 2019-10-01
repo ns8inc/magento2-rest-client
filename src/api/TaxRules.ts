@@ -1,5 +1,5 @@
 import { RestClient } from '..';
-const util = require('util');
+import { format } from 'util';
 
 export class TaxRules {
   public restClient: RestClient;
@@ -10,7 +10,7 @@ export class TaxRules {
 
   list(searchCriteria) {
     const query = 'searchCriteria=' + searchCriteria;
-    const endpointUrl = util.format('/taxRules/search?%s', query);
+    const endpointUrl = format('/taxRules/search?%s', query);
     return this.restClient.get(endpointUrl);
   }
 
@@ -19,12 +19,12 @@ export class TaxRules {
   }
 
   update(ruleId, ruleAttributes) {
-    const endpointUrl = util.format('/taxRules/%d', ruleId);
+    const endpointUrl = format('/taxRules/%d', ruleId);
     return this.restClient.put(endpointUrl, ruleAttributes);
   }
 
   delete(ruleId) {
-    const endpointUrl = util.format('/taxRules/%d', ruleId);
+    const endpointUrl = format('/taxRules/%d', ruleId);
     return this.restClient.delete(endpointUrl);
   }
 }

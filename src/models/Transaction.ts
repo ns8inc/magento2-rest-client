@@ -1,3 +1,11 @@
+import { SearchCriteria } from '.';
+
+export interface TransactionData {
+  items: Transaction[];
+  search_criteria: SearchCriteria;
+  total_count: number;
+}
+
 export interface Transaction {
   additionalInformation: string[] | null;
   childTransactions: Transaction[];

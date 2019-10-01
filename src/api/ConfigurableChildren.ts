@@ -1,5 +1,5 @@
 import { RestClient } from '..';
-const util = require('util');
+import { format } from 'util';
 
 export class ConfigurableChildren {
   public restClient: RestClient;
@@ -9,7 +9,7 @@ export class ConfigurableChildren {
   }
 
   list(sku) {
-    const endpointUrl = util.format('/configurable-products/%s/children', encodeURIComponent(sku));
+    const endpointUrl = format('/configurable-products/%s/children', encodeURIComponent(sku));
     return this.restClient.get(endpointUrl);
   }
 }

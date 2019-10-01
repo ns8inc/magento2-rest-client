@@ -1,5 +1,5 @@
 import { RestClient } from '..';
-const util = require('util');
+import { format } from 'util';
 
 export class Products {
   public restClient: RestClient;
@@ -10,12 +10,12 @@ export class Products {
 
   list(searchCriteria) {
     const query = 'searchCriteria=' + searchCriteria;
-    const endpointUrl = util.format('/products?%s', query);
+    const endpointUrl = format('/products?%s', query);
     return this.restClient.get(endpointUrl);
   }
   renderList(searchCriteria, currencyCode = 'USD', storeId = 1) {
     const query = 'searchCriteria=' + searchCriteria;
-    const endpointUrl = util.format('/products-render-info?%s&storeId=%d&currencyCode=' + encodeURIComponent(currencyCode), query, storeId);
+    const endpointUrl = format('/products-render-info?%s&storeId=%d&currencyCode=' + encodeURIComponent(currencyCode), query, storeId);
     return this.restClient.get(endpointUrl);
   }
   create(productAttributes) {
@@ -23,12 +23,12 @@ export class Products {
   }
 
   update(productSku, productAttributes) {
-    const endpointUrl = util.format('/products/%s', encodeURIComponent(productSku));
+    const endpointUrl = format('/products/%s', encodeURIComponent(productSku));
     return this.restClient.put(endpointUrl, productAttributes);
   }
 
   delete(productSku) {
-    const endpointUrl = util.format('/products/%s', encodeURIComponent(productSku));
+    const endpointUrl = format('/products/%s', encodeURIComponent(productSku));
     return this.restClient.delete(endpointUrl);
   }
 }

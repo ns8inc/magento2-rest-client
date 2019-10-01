@@ -1,5 +1,5 @@
 import { RestClient } from '..';
-const util = require('util');
+import { format } from 'util';
 
 export class Directory {
   public restClient: RestClient;
@@ -9,12 +9,12 @@ export class Directory {
   }
 
   countries() {
-    const endpointUrl = util.format('/directory/countries');
+    const endpointUrl = format('/directory/countries');
     return this.restClient.get(endpointUrl);
   }
 
   currency() {
-    const endpointUrl = util.format('/directory/currency');
+    const endpointUrl = format('/directory/currency');
     return this.restClient.get(endpointUrl);
   }
 }
