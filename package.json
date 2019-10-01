@@ -43,6 +43,6 @@
     "prepack": "yarn build",
     "test": "mocha --ui tdd --recursive ./test"
   },
-  "version": "0.2.4",
+  "version": "0.2.5",
   "private": false
 }
