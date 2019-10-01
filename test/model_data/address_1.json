@@ -8,7 +8,9 @@
   },
   "region_id": 33,
   "country_id": "US",
-  "street": ["6146 Honey Bluff Parkway"],
+  "street": [
+    "6146 Honey Bluff Parkway"
+  ],
   "telephone": "(555) 229-3326",
   "postcode": "49628-7978",
   "city": "Calder",
