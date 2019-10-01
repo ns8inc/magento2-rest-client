@@ -1,10 +1,10 @@
 export interface Store {
-  id: number;
   code: string;
-  name: string;
-  websiteID: number;
-  storeGroupID: number;
   extensionAttributes: StoreExtensionAttributes;
+  id: number;
+  name: string;
+  storeGroupID: number;
+  websiteID: number;
 }
 
 export interface StoreExtensionAttributes {

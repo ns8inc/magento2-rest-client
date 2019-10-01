@@ -1,5 +1,7 @@
-import { ParentItemElement, Shipping } from '.';
+import { Item, Shipping, ParentItemClass } from '.';
 export interface ShippingAssignment {
-  shipping: Shipping;
-  items: ParentItemElement[];
+  extension_attributes?: ParentItemClass;
+  items?: Item[];
+  shipping?: Shipping;
+  stock_id?: number;
 }

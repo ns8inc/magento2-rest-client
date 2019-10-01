@@ -1,6 +1,8 @@
-import { AppliedTax } from '.';
+import { AppliedTax, ParentItemClass } from '.';
 export interface ItemAppliedTax {
-  type: string;
-  applied_taxes: AppliedTax[];
+  type?: string;
   item_id?: number;
+  associated_item_id?: number;
+  applied_taxes?: AppliedTax[];
+  extension_attributes?: ParentItemClass;
 }

@@ -1,25 +1,25 @@
 export interface Transaction {
-  transactionID: number;
-  parentID: number | null;
-  orderID: number;
-  paymentID: number;
-  txnID: string;
-  parentTxnID: string;
-  txnType: TxnType;
-  isClosed: number;
   additionalInformation: string[] | null;
-  createdAt: string;
   childTransactions: Transaction[];
+  createdAt: string;
   extensionAttributes: TransactionExtensionAttributes | null;
+  isClosed: number;
+  orderID: number;
+  parentID: number | null;
+  parentTxnID: string;
+  paymentID: number;
+  transactionID: number;
+  txnID: string;
+  txnType: TxnType;
 }
 
 export enum TxnType {
-  Payment = 'payment',
-  Order = 'order',
   Authorization = 'authorization',
   Capture = 'capture',
+  Order = 'order',
+  Payment = 'payment',
+  Refund = 'refund',
   Void = 'void',
-  Refund = 'refund'
 }
 
 export interface TransactionExtensionAttributes { }
