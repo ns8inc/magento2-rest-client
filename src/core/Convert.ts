@@ -7,7 +7,7 @@ import {
   ItemAppliedTax,
   PaymentAdditionalInfo,
   ShippingAssignment,
-  ParentItemElement,
+  Item,
   ProductOption,
   ProductOptionExtensionAttributes,
   ConfigurableItemOption,
@@ -84,11 +84,11 @@ export class Convert {
     return JSON.stringify(uncast(value, r('ShippingAssignment')), null, 2);
   }
 
-  public static toParentItemElement(json: string): ParentItemElement {
+  public static toParentItemElement(json: string): Item {
     return cast(JSON.parse(json), r('ParentItemElement'));
   }
 
-  public static parentItemElementToJson(value: ParentItemElement): string {
+  public static parentItemElementToJson(value: Item): string {
     return JSON.stringify(uncast(value, r('ParentItemElement')), null, 2);
   }
 

@@ -11,7 +11,7 @@ export class Cart {
     return Number(parseFloat(val)).toString() === val;
   }
 
-  create(customerToken, customerId = null) {
+  create(customerToken: string, customerId: number | null = null) {
     if (customerId) {
       return this.restClient.post('/customers/' + customerId + '/carts', {}, customerToken);
     } else {
@@ -22,7 +22,7 @@ export class Cart {
       }
     }
   }
-  update(customerToken, cartId, cartItem, adminRequest = false) {
+  update(customerToken: string, cartId: number, cartItem: any, adminRequest: boolean = false) {
     if (adminRequest) {
       return this.restClient.post('/carts/' + cartId + '/items/', {
         cartItem: cartItem
@@ -40,7 +40,7 @@ export class Cart {
     }
   }
 
-  applyCoupon(customerToken, cartId, coupon, adminRequest = false) {
+  applyCoupon(customerToken: string, cartId: number, coupon: any, adminRequest: boolean = false) {
     if (adminRequest) {
       return this.restClient.put('/carts/' + cartId + '/coupons/' + coupon);
     } else {
@@ -51,7 +51,7 @@ export class Cart {
       }
     }
   }
-  deleteCoupon(customerToken, cartId, adminRequest = false) {
+  deleteCoupon(customerToken: string, cartId: number, adminRequest: boolean = false) {
     if (adminRequest) {
       return this.restClient.delete('/carts/' + cartId + '/coupons');
     } else {
@@ -62,7 +62,7 @@ export class Cart {
       }
     }
   }
-  getCoupon(customerToken, cartId, adminRequest = false) {
+  getCoupon(customerToken: string, cartId: number, adminRequest: boolean = false) {
     if (adminRequest) {
       return this.restClient.get('/carts/' + cartId + '/coupons');
     } else {
@@ -73,7 +73,7 @@ export class Cart {
       }
     }
   }
-  delete(customerToken, cartId, cartItem, adminRequest = false) {
+  delete(customerToken: string, cartId: number, cartItem: any, adminRequest: boolean = false) {
     if (adminRequest) {
       return this.restClient.delete('/carts/' + cartId + '/items/' + cartItem.item_id);
     } else {
@@ -84,7 +84,7 @@ export class Cart {
       }
     }
   }
-  pull(customerToken, cartId, params, adminRequest = false) {
+  pull(customerToken: string, cartId: number, adminRequest: boolean = false) {
     if (adminRequest) {
       return this.restClient.get('/carts/' + cartId + '/items/');
     } else {
@@ -95,7 +95,7 @@ export class Cart {
       }
     }
   }
-  totals(customerToken, cartId, params, adminRequest = false) {
+  totals(customerToken: string, cartId: number, adminRequest: boolean = false) {
     if (adminRequest) {
       return this.restClient.get('/carts/' + cartId + '/totals/');
     } else {
@@ -107,7 +107,7 @@ export class Cart {
     }
   }
 
-  billingAddress(customerToken, cartId, body, adminRequest = false) {
+  billingAddress(customerToken: string, cartId: number, body: any, adminRequest: boolean = false) {
     if (adminRequest) {
       return this.restClient.post('/carts/' + cartId + '/billing-address', body);
     } else {
@@ -119,7 +119,7 @@ export class Cart {
     }
   }
 
-  shippingInformation(customerToken, cartId, body, adminRequest = false) {
+  shippingInformation(customerToken: string, cartId: number, body: any, adminRequest: boolean = false) {
     if (adminRequest) {
       return this.restClient.post('/carts/' + cartId + '/shipping-information', body);
     } else {
@@ -131,7 +131,7 @@ export class Cart {
     }
   }
 
-  order(customerToken, cartId, body, adminRequest = false) {
+  order(customerToken: string, cartId: number, body: any, adminRequest: boolean = false) {
     if (adminRequest) {
       return this.restClient.put('/carts/' + cartId + '/order', body);
     } else {
@@ -143,7 +143,7 @@ export class Cart {
     }
   }
 
-  paymentInformationAndOrder(customerToken, cartId, body, adminRequest = false) {
+  paymentInformationAndOrder(customerToken: string, cartId: number, body: any, adminRequest: boolean = false) {
     if (adminRequest) {
       return this.restClient.post('/carts/' + cartId + '/payment-information', body);
     } else {
@@ -155,14 +155,14 @@ export class Cart {
     }
   }
 
-  assign(cartId, userId, storeId = 0) {
+  assign(cartId: number, userId: number, storeId: number = 0) {
     return this.restClient.put('/guest-carts/' + cartId, {
       customerId: userId,
       storeId: storeId
     })
   }
 
-  shippingMethods(customerToken, cartId, address) {
+  shippingMethods(customerToken: string, cartId: number, address: any) {
     if (customerToken && Cart.isNumeric(cartId)) {
       return this.restClient.post('/carts/mine/estimate-shipping-methods', {
         address: address
@@ -174,7 +174,7 @@ export class Cart {
     }
   }
 
-  paymentMethods(customerToken, cartId) {
+  paymentMethods(customerToken: string, cartId: number) {
     if (customerToken && Cart.isNumeric(cartId)) {
       return this.restClient.get('/carts/mine/payment-methods', customerToken)
     } else {
@@ -182,7 +182,7 @@ export class Cart {
     }
   }
 
-  collectTotals(customerToken, cartId, shippingMethod) {
+  collectTotals(customerToken: string, cartId: number, shippingMethod: any) {
     if (customerToken && Cart.isNumeric(cartId)) {
       return this.restClient.put('/carts/mine/collect-totals', shippingMethod, customerToken)
     } else {

@@ -12,7 +12,7 @@ export class Customers {
     return this.restClient.post('/customers', customerData);
   }
 
-  async get(customerId: string): Promise<Customer> {
+  async get(customerId: number): Promise<Customer> {
     const endpointUrl = util.format('/customers/%d', customerId);
     const order = await this.restClient.get(endpointUrl);
     return order;

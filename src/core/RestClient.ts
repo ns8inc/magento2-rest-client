@@ -1,5 +1,6 @@
-import { Logger, RestClientOptions } from '.';
 import {
+  Logger,
+  RestClientOptions,
   Addresses,
   Attributes,
   Categories,
@@ -25,30 +26,30 @@ const request = require('request');
 const MAGENTO_API_VERSION = 'V1';
 
 export class RestClient {
-  public instance: any;
-  public serverUrl: any;
-  public apiVersion: any;
-  public oauth: any;
-  public token: any;
-  public errorMessage: any;
-  public logger: Logger;
   public addresses: Addresses;
+  public apiVersion: any;
   public attributes: Attributes;
+  public cart: Cart;
   public categories: Categories;
-  public products: Products;
-  public productMedia: ProductMedia;
   public categoryProducts: CategoryProducts;
   public configurableChildren: ConfigurableChildren;
   public configurableOptions: ConfigurableOptions;
+  public customers: Customers;
+  public directory: Directory;
+  public errorMessage: any;
+  public instance: any;
+  public logger: Logger;
+  public oauth: any;
+  public orders: Orders;
+  public productMedia: ProductMedia;
+  public products: Products;
+  public reviews: Reviews;
+  public serverUrl: any;
   public stockItems: StockItems;
   public taxRates: TaxRates;
   public taxRules: TaxRules;
-  public customers: Customers;
-  public cart: Cart;
-  public orders: Orders;
+  public token: any;
   public transactions: Transactions;
-  public directory: Directory;
-  public reviews: Reviews;
 
   constructor(options: RestClientOptions) {
     this.serverUrl = options.url;
@@ -66,25 +67,26 @@ export class RestClient {
     };
     this.logger = new Logger();
 
+    this.addresses = new Addresses(this);
     this.attributes = new Attributes(this);
+    this.cart = new Cart(this);
     this.categories = new Categories(this);
-    this.products = new Products(this);
-    this.productMedia = new ProductMedia(this);
     this.categoryProducts = new CategoryProducts(this);
     this.configurableChildren = new ConfigurableChildren(this);
     this.configurableOptions = new ConfigurableOptions(this);
+    this.customers = new Customers(this);
+    this.directory = new Directory(this);
+    this.orders = new Orders(this);
+    this.productMedia = new ProductMedia(this);
+    this.products = new Products(this);
+    this.reviews = new Reviews(this);
     this.stockItems = new StockItems(this);
     this.taxRates = new TaxRates(this);
     this.taxRules = new TaxRules(this);
-    this.customers = new Customers(this);
-    this.cart = new Cart(this);
-    this.orders = new Orders(this);
     this.transactions = new Transactions(this);
-    this.directory = new Directory(this);
-    this.reviews = new Reviews(this);
-    this.addresses = new Addresses(this);
   }
-  apiCall(request_data, request_token = ''): any {
+
+  public apiCall(request_data, request_token = ''): any {
     const options = {
       url: request_data.url,
       method: request_data.method,
@@ -94,7 +96,7 @@ export class RestClient {
       json: true,
       body: request_data.body,
     };
-    return new Promise((resolve, reject) => {
+    const ret = new Promise((resolve, reject) => {
       request(options, (error, response, body) => {
         if (error) {
           this.logger.error('Error occured: ' + error);
@@ -117,6 +119,10 @@ export class RestClient {
         resolve(body);
       });
     });
+    ret.catch((error) => {
+      this.logger.error('Error occured: ' + error);
+    });
+    return ret;
   }
 
   consumerToken(login_data) {

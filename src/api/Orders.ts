@@ -17,8 +17,9 @@ export class Orders {
    * @param oderId
    * @returns {Promise<{increment_id: String}>}
    */
-  incrementIdById(oderId: number) {
-    return this.restClient.get('/orders/' + oderId + '?fields=increment_id');
+  async incrementIdById(oderId: number): Promise<Order> {
+    const order = await this.restClient.get('/orders/' + oderId + '?fields=increment_id') as Order;
+    return order;
   }
 
   async list(searchCriteria: string = ''): Promise<OrderData> {
@@ -28,7 +29,7 @@ export class Orders {
     return orders;
   };
 
-  async get(orderId: string): Promise<Order> {
+  async get(orderId: number): Promise<Order> {
     const endpointUrl = util.format('/orders/%d', orderId);
     const order = await this.restClient.get(endpointUrl) as Order;
     return order;
