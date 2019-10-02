@@ -1,0 +1,10 @@
+node_modules/
+src/
+.vscode/
+test/
+tmp/
+.editorconfig
+.gitignore
+codealike.json
+webpack.config.js
+yarn-error.log
