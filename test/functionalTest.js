@@ -1,12 +1,13 @@
-const RestClient = require('../dist/core/RestClient').RestClient;
+const app = require('../dist/app');
+const RestClient = app.RestClient;
 const fs = require('fs');
 
 const options = {
-  url: 'http://url/index.php/rest',
-  consumerKey: '',
-  consumerSecret: '',
-  accessToken: '',
-  accessTokenSecret: ''
+  url: 'http://dev-cfroehlich.ns8demos.com/index.php/rest',
+  consumerKey: 'm9aj4z9q6b6z0ss708pvoxch22wkbqse',
+  consumerSecret: 'c1k1l4ayzum511141ylk6w9qfkhtka7h',
+  accessToken: '0xfw294s73dh8yo5ewoe3p18jofhicpf',
+  accessTokenSecret: 'auroj9em9i196hy7d1uzyqini8gdtmet'
 };
 const client = new RestClient(options);
 
