@@ -17,4 +17,7 @@ export * from './Shipping';
 export * from './ShippingAssignment';
 export * from './StatusHistory';
 export * from './Store';
+export * from './StoreConfig';
+export * from './StoreGroup';
+export * from './StoreWebsite';
 export * from './Transaction';
