@@ -54,6 +54,6 @@
     "test": "mocha --ui tdd --recursive ./test",
     "webpack": "webpack"
   },
-  "version": "0.2.8",
+  "version": "0.2.9",
   "private": false
 }
