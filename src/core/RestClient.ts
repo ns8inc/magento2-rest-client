@@ -25,6 +25,7 @@ import {
 import * as createError from 'http-errors';
 import { IncomingMessage } from 'http';
 import * as StackTracey  from 'stacktracey';
+import { RestApiError } from './RestClientInterfaces';
 const OAuth = require('oauth-1.0a');
 const request = require('request');
 
@@ -185,7 +186,7 @@ export class RestClient {
     return message;
   }
 
-  private createApiError(options: RestApiOptions, response: IncomingMessage, body: any, stackTraces: RestApiStackTraces, error?: any) {
+  private createApiError(options: RestApiOptions, response: IncomingMessage, body: any, stackTraces: RestApiStackTraces, error?: any): RestApiError {
     let errorMessage = 'MAGENTO API ERROR';
     if (error) {
       errorMessage += ': ' + error.message;
@@ -197,13 +198,14 @@ export class RestClient {
     const statusCode = response.statusCode || 400;
     const httpError = createError(statusCode, errorMessage, {
       apiOptions: options,
+      outerStack: stackTraces.outer,
+      stack: stackTraces.inner,
+      statusCode: response.statusCode,
       statusMessage: response.statusMessage,
       url: response.url,
-      stack: stackTraces.inner,
-      outerStack: stackTraces.outer
     });
-    this.logger.error('API call failed: ' + errorMessage, httpError);
-    return httpError;
+    this.logger.error('API call failed: ' + errorMessage, httpError as Error);
+    return httpError as unknown as RestApiError;
   }
 
   private createUrl(resourceUrl) {
