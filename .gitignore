@@ -3,3 +3,5 @@ dist/
 test/model_data/
 tmp/
 yarn-error.log
+.env
+docs/

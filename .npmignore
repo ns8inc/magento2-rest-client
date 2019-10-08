@@ -8,3 +8,4 @@ tmp/
 codealike.json
 webpack.config.js
 yarn-error.log
+.env
