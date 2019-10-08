@@ -60,6 +60,6 @@
     "webpack": "webpack",
     "docs": "typedoc"
   },
-  "version": "0.2.10",
+  "version": "0.2.11",
   "private": false
 }
