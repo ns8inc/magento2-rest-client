@@ -4,15 +4,19 @@
     "url": "https://github.com/ns8inc/magento2-rest-client/issues"
   },
   "dependencies": {
-    "global": "^4.4.0",
+    "http-errors": "1.7.3",
     "oauth-1.0a": "1.0.1",
     "request": "2.88.0",
+    "stacktracey": "^1.2.122",
     "winston": "3.2.1"
   },
   "deprecated": false,
   "description": "REST client for accessing Magento 2 functionality.",
   "devDependencies": {
+    "@types/http-errors": "1.6.2",
     "@types/node": "12.7.11",
+    "@types/request": "2.47.0",
+    "@types/winston": "2.4.4",
     "awesome-typescript-loader": "5.2.1",
     "clean-webpack-plugin": "3.0.0",
     "cross-env": "6.0.3",

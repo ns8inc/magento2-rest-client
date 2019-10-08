@@ -17,9 +17,14 @@ import {
   Transactions,
   Directory,
   Reviews,
-  Orders
+  Orders,
+  RestApiOptions,
+  RestApiStackTraces
 } from '..';
 
+import * as createError from 'http-errors';
+import { IncomingMessage } from 'http';
+import * as StackTracey  from 'stacktracey';
 const OAuth = require('oauth-1.0a');
 const request = require('request');
 
@@ -86,8 +91,50 @@ export class RestClient {
     this.transactions = new Transactions(this);
   }
 
-  public apiCall(request_data, request_token = ''): any {
-    const options = {
+  public get(resourceUrl, request_token = '') {
+    const request_data = {
+      url: this.createUrl(resourceUrl),
+      method: 'GET'
+    };
+    return this.apiCall(request_data, request_token);
+  }
+
+  public post(resourceUrl, data = {}, request_token = '') {
+    const request_data = {
+      url: this.createUrl(resourceUrl),
+      method: 'POST',
+      body: data
+    };
+    return this.apiCall(request_data, request_token);
+  }
+
+  public put(resourceUrl, data = {}, request_token = '') {
+    const request_data = {
+      url: this.createUrl(resourceUrl),
+      method: 'PUT',
+      body: data
+    };
+    return this.apiCall(request_data, request_token);
+  }
+
+  public delete(resourceUrl, request_token = '') {
+    const request_data = {
+      url: this.createUrl(resourceUrl),
+      method: 'DELETE'
+    };
+    return this.apiCall(request_data, request_token);
+  }
+
+  public consumerToken(login_data) {
+    return this.apiCall({
+      url: this.createUrl('/integration/customer/token'),
+      method: 'POST',
+      body: login_data
+    })
+  }
+
+  private apiCall(request_data, request_token = ''): any {
+    const options: RestApiOptions = {
       url: request_data.url,
       method: request_data.method,
       headers: request_token ? {
@@ -96,48 +143,31 @@ export class RestClient {
       json: true,
       body: request_data.body,
     };
+    const innerStack = new StackTracey().pretty;
     const ret = new Promise((resolve, reject) => {
-      request(options, (error, response, body) => {
-        if (error) {
-          this.logger.error('Error occured: ' + error);
-          reject(error);
+      request(options, (error, response: IncomingMessage, body) => {
+        if (error || !this.httpCallSucceeded(response)) {
+          const outerStack = new StackTracey().pretty;
+          const e = this.createApiError(options, response, body, { inner: innerStack, outer: outerStack }, error);
+          reject(e);
           return;
-        } else if (!this.httpCallSucceeded(response)) {
-          let errorMessage = 'HTTP ERROR ' + response.code;
-          if (body && body.hasOwnProperty('message'))
-            errorMessage = this.errorString(body.message, body.hasOwnProperty('parameters') ? body.parameters : {});
-
-          this.logger.error('API call failed: ' + errorMessage);
-          reject({
-            errorMessage,
-            code: response.statusCode,
-            toString: () => {
-              return this.errorMessage
-            }
-          });
+        } else {
+          resolve(body);
         }
-        resolve(body);
       });
-    });
-    ret.catch((error) => {
-      this.logger.error('Error occured: ' + error);
     });
     return ret;
   }
 
-  consumerToken(login_data) {
-    return this.apiCall({
-      url: this.createUrl('/integration/customer/token'),
-      method: 'POST',
-      body: login_data
-    })
+  private httpCallSucceeded(response: IncomingMessage): boolean {
+    if (response && response.statusCode) {
+      return response.statusCode >= 200 && response.statusCode < 300;
+    } else {
+      return false;
+    }
   }
 
-  httpCallSucceeded(response) {
-    return response.statusCode >= 200 && response.statusCode < 300;
-  }
-
-  errorString(message, parameters) {
+  private errorString(message, parameters): string {
     if (parameters === null) {
       return message;
     }
@@ -152,45 +182,31 @@ export class RestClient {
         message = message.replace(parameterPlaceholder, parameters[key]);
       }
     }
-
     return message;
   }
 
-  get(resourceUrl, request_token = '') {
-    const request_data = {
-      url: this.createUrl(resourceUrl),
-      method: 'GET'
-    };
-    return this.apiCall(request_data, request_token);
+  private createApiError(options: RestApiOptions, response: IncomingMessage, body: any, stackTraces: RestApiStackTraces, error?: any) {
+    let errorMessage = 'MAGENTO API ERROR';
+    if (error) {
+      errorMessage += ': ' + error.message;
+    } else {
+      errorMessage += ': ' + response.statusCode;
+      if (body && body.hasOwnProperty('message'))
+        errorMessage += ': ' + this.errorString(body.message, body.hasOwnProperty('parameters') ? body.parameters : {});
+    }
+    const statusCode = response.statusCode || 400;
+    const httpError = createError(statusCode, errorMessage, {
+      apiOptions: options,
+      statusMessage: response.statusMessage,
+      url: response.url,
+      stack: stackTraces.inner,
+      outerStack: stackTraces.outer
+    });
+    this.logger.error('API call failed: ' + errorMessage, httpError);
+    return httpError;
   }
 
-  createUrl(resourceUrl) {
+  private createUrl(resourceUrl) {
     return this.serverUrl + '/' + this.apiVersion + resourceUrl;
-  }
-
-  post(resourceUrl, data = {}, request_token = '') {
-    const request_data = {
-      url: this.createUrl(resourceUrl),
-      method: 'POST',
-      body: data
-    };
-    return this.apiCall(request_data, request_token);
-  }
-
-  put(resourceUrl, data = {}, request_token = '') {
-    const request_data = {
-      url: this.createUrl(resourceUrl),
-      method: 'PUT',
-      body: data
-    };
-    return this.apiCall(request_data, request_token);
-  }
-
-  delete(resourceUrl, request_token = '') {
-    const request_data = {
-      url: this.createUrl(resourceUrl),
-      method: 'DELETE'
-    };
-    return this.apiCall(request_data, request_token);
   }
 }

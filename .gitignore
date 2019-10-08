@@ -5,3 +5,4 @@ tmp/
 yarn-error.log
 .env
 docs/
+*.log
