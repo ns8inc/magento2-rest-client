@@ -52,10 +52,8 @@
   "name": "@ns8/magento2-rest-client",
   "repository": "git+https://github.com/ns8inc/magento2-rest-client.git",
   "scripts": {
-    "build": "tsc && yarn webpack && rimraf tmp",
-    "clean": "rimraf tmp && rimraf dist",
+    "build": "tsc -d && yarn webpack",
     "docs": "typedoc",
-    "prebuild": "yarn clean",
     "prepack": "yarn build",
     "test": "mocha --ui tdd --recursive ./test",
     "webpack": "webpack"
