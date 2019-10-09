@@ -1,17 +1,21 @@
 {
+  "awesomeTypescriptLoaderOptions": {
+    "reportFiles": ["src/**/*.{ts,tsx}"],
+    "useCache": true
+  },
   "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "noImplicitAny": false,
-    "removeComments": false,
-    "noLib": false,
     "allowSyntheticDefaultImports": true,
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strictNullChecks": true,
-    "target": "es2017",
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "noLib": false,
+    "outDir": "tmp",
+    "removeComments": false,
     "sourceMap": true,
-    "outDir": "tmp"
+    "strictNullChecks": true,
+    "target": "es2017"
   },
   "include": [
     "src/**/*"

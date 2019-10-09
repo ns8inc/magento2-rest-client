@@ -1,18 +1,19 @@
 const fs = require('fs');
 const path = require('path');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 function DtsBundlePlugin() {}
-  DtsBundlePlugin.prototype.apply = function (compiler) {
-    const dts = require('dts-bundle');
-    compiler.plugin('done', function () {
-      dts.bundle({
-        name: 'app',
-        main: 'tmp/index.d.ts',
-        out: '../dist/app.d.ts',
-        removeSource: false,
-        outputAsModuleFolder: true // to use npm in-package typings
-      });
+DtsBundlePlugin.prototype.apply = function (compiler) {
+  const dts = require('dts-bundle');
+  compiler.plugin('done', function () {
+    dts.bundle({
+      name: 'app',
+      main: 'tmp/index.d.ts',
+      out: '../dist/app.d.ts',
+      removeSource: false,
+      outputAsModuleFolder: true // to use npm in-package typings
     });
+  });
 };
 
 // Resolve Common JS & Node Modules
@@ -37,7 +38,8 @@ let config = {
     umdNamedDefine: true
   },
   resolve: {
-    extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+    extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
+    modules: ['node_modules']
   },
   devtool: 'source-map',
 
@@ -47,18 +49,19 @@ let config = {
       use: [{
         loader: 'awesome-typescript-loader'
       }],
-      exclude: /node_modules/
     }]
   },
   plugins: [
-    new DtsBundlePlugin()
+    new DtsBundlePlugin(),
+    new HardSourceWebpackPlugin({
+
+    }),
   ],
   target: 'node',
   node: {
     __dirname: false,
     __filename: false,
-  },
-  externals: nodeModules
+  }
 };
 
 module.exports = config;
