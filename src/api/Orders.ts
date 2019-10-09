@@ -34,4 +34,24 @@ export class Orders {
     const order = await this.restClient.get(endpointUrl) as Order;
     return order;
   };
+
+  async statuses(orderId: number): Promise<any> {
+    const endpointUrl = `${format('/orders/%d', orderId)}/statuses`;
+    return await this.restClient.get(endpointUrl);
+  };
+
+  async cancel(orderId: number): Promise<any> {
+    const endpointUrl = `${format('/orders/%d', orderId)}/cancel`;
+    return await this.restClient.post(endpointUrl);
+  };
+
+  async hold(orderId: number): Promise<any> {
+    const endpointUrl = `${format('/orders/%d', orderId)}/hold`;
+    return await this.restClient.post(endpointUrl);
+  };
+
+  async unhold(orderId: number): Promise<any> {
+    const endpointUrl = `${format('/orders/%d', orderId)}/unhold`;
+    return await this.restClient.post(endpointUrl);
+  };
 }
