@@ -3,9 +3,7 @@
   "bugs": {
     "url": "https://github.com/ns8inc/magento2-rest-client/issues"
   },
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "deprecated": false,
   "description": "REST client for accessing Magento 2 functionality.",
   "devDependencies": {
@@ -28,10 +26,10 @@
     "typedoc": "0.15.0",
     "typescript": "3.6.3",
     "uglifyjs-webpack-plugin": "2.2.0",
+    "webpack": "4.41.0",
     "webpack-cli": "3.3.9",
     "webpack-dev-server": "3.8.1",
     "webpack-merge": "4.2.2",
-    "webpack": "4.41.0",
     "winston": "3.2.1",
     "yarn": "^1.19.1"
   },
@@ -62,6 +60,6 @@
     "test": "mocha --ui tdd --recursive ./test",
     "webpack": "webpack"
   },
-  "version": "0.2.12",
+  "version": "0.2.13",
   "private": false
 }
