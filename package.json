@@ -58,6 +58,6 @@
     "test": "mocha --ui tdd --recursive ./test",
     "webpack": "webpack"
   },
-  "version": "0.2.15",
+  "version": "0.2.16",
   "private": false
 }
