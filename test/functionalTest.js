@@ -26,6 +26,10 @@ client.orders.list()
           client.orders.get(item.entity_id)
             .then(function (data) {
               fs.writeFileSync(`test/model_data/orders/order_${item.entity_id}.json`, JSON.stringify(data, null, 2))
+              client.orders.postComment(item.entity_id, {
+                comment: 'test comment',
+                created_at: new Date()
+              })
             })
         } catch (e) {
           console.error(e);

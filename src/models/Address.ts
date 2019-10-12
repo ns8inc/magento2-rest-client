@@ -30,7 +30,7 @@ export interface Address {
   prefix?: string;
   region_code?: string;
   region_id?: number;
-  region?: Region;
+  region?: Region | string;
   street?: string[];
   suffix?: string;
   telephone?: string;
