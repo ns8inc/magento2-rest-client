@@ -1,4 +1,4 @@
-import { RestClient, Convert } from '../core';
+import { RestClient } from '../core';
 import { OrderData, Order, StatusHistory } from '../models';
 import { format } from 'util';
 

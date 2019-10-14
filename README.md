@@ -1,81 +1,46 @@
 # Magento2 REST client
 
 This Node.js library enables JavaScript applications to communicate with Magento2 sites using their REST API.
-This module based on the magento2-rest-client module created by Marko Novak (2016).
+This module based on [magento2-rest-client](https://github.com/DivanteLtd/magento2-rest-client), which is in turn based on the `magento2-rest-client` module created by Marko Novak (2016).
 
-This module is used by the [Vue Storefront - first Progressive Web App for eCommerce](https://github.com/DivanteLtd/vue-storefront).
-
-**NOTE: the library is not finished yet! Only a subset of Magento2 API is currently implemented.**
+This module is used by the NS8 Protect Magento extension. It is safe for production use, but **NOTE: the library is not finished yet! Only a subset of Magento2 API is currently implemented. Not all methods are fully documented, and not all return types are fully typed.**
 
 ## Installation
 
 The library can be installed using the Npm package manager:
 
-```
-    yarn add @ns8/magento2-rest-client
+```shell
+yarn add @ns8/magento2-rest-client
 ```
 
 ## Usage
 
 The code sample below shows the usage of the library:
 
-```javascript
-var Magento2Client = require('magento2-rest-client').Magento2Client;
+```typescript
+import { RestClient } from '@ns8/magento2-rest-client';
 
-var options = {
+const options = {
   url: 'http://www.test.com/index.php/rest',
   consumerKey: '<OAuth 1.0a consumer key>',
   consumerSecret: '<OAuth 1.0a consumer secret>',
   accessToken: '<OAuth 1.0a access token>',
   accessTokenSecret: '<OAuth 1.0a access token secret>'
 };
-var client = Magento2Client(options);
-client.categories.list().then(function(categories) {
+const client = new RestClient(options);
+client.categories.list().then( (categories) => {
   assert.equal(categories.parentId, 1);
 });
 ```
 
-You can extend the API by adding Your own modules or adding methods to the existing modules!
-
-```javascript
-var Magento2Client = require('magento2-rest-client').Magento2Client;
-
-var options = {
-  url: 'http://www.test.com/index.php/rest',
-  consumerKey: '<OAuth 1.0a consumer key>',
-  consumerSecret: '<OAuth 1.0a consumer secret>',
-  accessToken: '<OAuth 1.0a access token>',
-  accessTokenSecret: '<OAuth 1.0a access token secret>'
-};
-var client = Magento2Client(options);
-
-client.addMethods('categories', function(restClient) {
-  var module = {};
-  module.listEx = function() {
-    return restClient.get('/categories');
-  };
-  return module;
-});
-
-client.addMethods('newModule', function(restClient) {
-  var module = {};
-  module.newMethod = function() {
-    return restClient.post('/custom_magento_api_endpoint');
-  };
-  return module;
-});
-
-client.categories.listEx().then(function(categories) {
-  assert.equal(categories.parentId, 1);
-});
-client.newModule.newMethod().then(function(resultJson) {});
-```
+TODO: Allow extending the API by adding your own modules or adding methods to the existing modules!
 
 ## Contributing
 
+Create issues or submit PRs to extend existing API support or add new functionality. All contributions are welcome.
+
 ### usefull resources
 
-Magento API with Swagger: https://devdocs.magento.com/swagger/
-
-Entry Page of REST API Documentation of Magento: https://devdocs.magento.com/guides/v2.3/rest/bk-rest.html
-filter response: https://devdocs.magento.com/guides/v2.3/rest/retrieve-filtered-responses.html
+* Magento API with Swagger: https://devdocs.magento.com/swagger/
+* Admin API Documentation of Magento: https://devdocs.magento.com/redoc/2.3/admin-rest-api.html
+* Filtered responses: https://devdocs.magento.com/guides/v2.3/rest/retrieve-filtered-responses.html
