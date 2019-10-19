@@ -4,7 +4,6 @@
     "url": "https://github.com/ns8inc/magento2-rest-client/issues"
   },
   "dependencies": {},
-  "deprecated": false,
   "description": "REST client for accessing Magento 2 functionality.",
   "devDependencies": {
     "@types/http-errors": "1.6.2",
@@ -60,6 +59,5 @@
     "rebuild:dev": "yarn clean && yarn build:dev",
     "webpack": "webpack"
   },
-  "version": "0.2.20",
-  "private": false
+  "version": "0.2.20"
 }

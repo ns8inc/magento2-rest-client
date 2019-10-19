@@ -1,5 +1,6 @@
 const path = require('path');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+require('dotenv').config();
 
 function DtsBundlePlugin() {}
 DtsBundlePlugin.prototype.apply = function (compiler) {
@@ -16,10 +17,9 @@ DtsBundlePlugin.prototype.apply = function (compiler) {
 };
 
 let mode = 'production';
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV && process.env.NODE_ENV.startsWith('dev')) {
   mode = 'development';
 }
-
 const config = {
   entry: './src/index.ts',
   mode: mode,
