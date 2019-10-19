@@ -1,4 +1,3 @@
-const fs = require('fs');
 const path = require('path');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
@@ -16,9 +15,14 @@ DtsBundlePlugin.prototype.apply = function (compiler) {
   });
 };
 
-let config = {
+let mode = 'production';
+if (process.env.NODE_ENV === 'development') {
+  mode = 'development';
+}
+
+const config = {
   entry: './src/index.ts',
-  mode: 'development',
+  mode: mode,
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.js',
