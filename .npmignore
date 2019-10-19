@@ -9,3 +9,8 @@ codealike.json
 webpack.config.js
 yarn-error.log
 .env
+.awcache/
+docs/
+*.log
+tsconfig.json
+typedoc.json
