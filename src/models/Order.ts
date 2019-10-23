@@ -6,6 +6,7 @@ import {
   SearchCriteria,
   StatusHistory
   } from '.';
+import { OrderState, OrderStatus } from './enums';
 
 export interface OrderData {
   items: Order[];
@@ -122,9 +123,9 @@ export interface Order {
   shipping_refunded?: number;
   shipping_tax_amount: number;
   shipping_tax_refunded?: number;
-  state: string;
+  state: OrderState | string;
   status_histories: StatusHistory[];
-  status: string;
+  status: OrderStatus | string;
   store_currency_code: string;
   store_id: number;
   store_name: string;

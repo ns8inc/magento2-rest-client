@@ -21,3 +21,4 @@ export * from './StoreConfig';
 export * from './StoreGroup';
 export * from './StoreWebsite';
 export * from './Transaction';
+export * from './enums';

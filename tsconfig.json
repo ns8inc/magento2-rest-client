@@ -17,7 +17,10 @@
     "removeComments": false,
     "sourceMap": true,
     "strictNullChecks": true,
-    "target": "es2017"
+    "target": "es2017",
+    "types": [
+      "jest"
+    ]
   },
   "include": [
     "src/**/*"

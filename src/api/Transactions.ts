@@ -8,7 +8,7 @@ export class Transactions {
     this.restClient = restClient;
   }
 
-  async list(searchCriteria: string): Promise<TransactionData> {
+  async list(searchCriteria: string = ''): Promise<TransactionData> {
     const query = 'searchCriteria=' + searchCriteria;
     const endpointUrl = format('/transactions?%s', query);
     const transactions = await this.restClient.get(endpointUrl) as TransactionData;

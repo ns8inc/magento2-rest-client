@@ -23,6 +23,7 @@ export interface Address {
   extension_attributes?: BillingAddressExtensionAttributes;
   fax?: string;
   firstname?: string;
+  id?: number,
   lastname?: string;
   middlename?: string;
   parent_id: number;
