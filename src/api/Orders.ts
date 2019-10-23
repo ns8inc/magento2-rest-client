@@ -89,7 +89,7 @@ export class Orders {
    * @param comment
    * @returns {Promise<boolean>}
    */
-  async postComment(orderId: number, comment: StatusHistory): Promise<boolean> {
+  async postComment(orderId: number, comment: Partial<StatusHistory>): Promise<boolean> {
     const endpointUrl = `${format('/orders/%d', orderId)}/comments`;
     if (!comment.created_at) comment.created_at = new Date();
     return await this.restClient.post(endpointUrl, {statusHistory: comment});
