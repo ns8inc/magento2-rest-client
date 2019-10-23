@@ -17,9 +17,10 @@ const execute = async () => {
   let allExistingTransactions: TransactionData;
 
 
-  if (!fs.existsSync('test/mock_data')) fs.mkdirSync('test/mock_data');
-  if (!fs.existsSync('test/mock_data/orders')) fs.mkdirSync('test/mock_data/orders');
-  if (!fs.existsSync('test/mock_data/transactions')) fs.mkdirSync('test/mock_data/transactions');
+  if (!fs.existsSync('test/model_data')) fs.mkdirSync('test/model_data');
+  if (!fs.existsSync('test/model_data/orders')) fs.mkdirSync('test/model_data/orders');
+  if (!fs.existsSync('test/model_data/orders/comments')) fs.mkdirSync('test/model_data/orders/comments');
+  if (!fs.existsSync('test/model_data/transactions')) fs.mkdirSync('test/model_data/transactions');
 
   allExistingOrders = await client.orders.list();
   fs.writeFileSync('test/model_data/orders/orders.json', JSON.stringify(allExistingOrders, null, 2))
@@ -48,6 +49,13 @@ const execute = async () => {
     status: OrderState.PAYMENT_REVIEW,
   });
   console.log('order comment added');
+
+  allExistingOrders.items.forEach(async (order) => {
+    const allExistingComments = await client.orders.getComments(order.entity_id);
+    fs.writeFileSync(`test/model_data/orders/comments/order_${order.entity_id}_comments.json`, JSON.stringify(allExistingComments, null, 2))
+    console.log('Found all comments');
+  })
+
 
   const first = allExistingTransactions.items[0];
   await client.transactions.getByTransactionId(first.txn_id);

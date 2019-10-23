@@ -1,6 +1,11 @@
-import { RestClient } from '../core';
-import { OrderData, Order, StatusHistory } from '../models';
 import { format } from 'util';
+import {
+  Order,
+  OrderData,
+  RestClient,
+  StatusHistory,
+  StatusHistoryData
+  } from '..';
 
 export class Orders {
   public restClient: RestClient;
@@ -89,7 +94,7 @@ export class Orders {
    * @param comment
    * @returns {Promise<boolean>}
    */
-  async postComment(orderId: number, comment: Partial<StatusHistory>): Promise<boolean> {
+  async postComment(orderId: number, comment: StatusHistory): Promise<boolean> {
     const endpointUrl = `${format('/orders/%d', orderId)}/comments`;
     if (!comment.created_at) comment.created_at = new Date();
     return await this.restClient.post(endpointUrl, {statusHistory: comment});
@@ -100,8 +105,8 @@ export class Orders {
    * @param orderId
    * @returns {Promise<StatusHistory>}
    */
-  async getComments(orderId: number): Promise<StatusHistory> {
+  async getComments(orderId: number): Promise<StatusHistoryData> {
     const endpointUrl = `${format('/orders/%d', orderId)}/comments`;
-    return await this.restClient.get(endpointUrl).items;
+    return await this.restClient.get(endpointUrl);
   }
 }

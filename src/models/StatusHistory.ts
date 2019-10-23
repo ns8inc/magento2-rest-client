@@ -1,4 +1,10 @@
-import { OrderState, ParentItemClass } from '.';
+import { OrderState, ParentItemClass, SearchCriteria } from '.';
+
+export interface StatusHistoryData {
+  items: StatusHistory[];
+  search_criteria: SearchCriteria;
+  total_count: number;
+}
 
 export interface StatusHistory {
   comment: string;
