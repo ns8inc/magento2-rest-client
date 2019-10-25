@@ -66,5 +66,5 @@
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "webpack": "webpack"
   },
-  "version": "0.2.25"
+  "version": "0.2.26"
 }
