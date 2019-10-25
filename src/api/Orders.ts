@@ -49,6 +49,17 @@ export class Orders {
   };
 
   /**
+   * @param incrementId
+   * @returns {Promise<Order>}
+   */
+  async getByIncrementId(incrementId: string): Promise<Order> {
+    const query = `&searchCriteria[filterGroups][0][filters][0][field]=increment_id&searchCriteria[filterGroups][0][filters][0][value]=${incrementId}`;
+    const orders = await this.list(query);
+    const order = orders.items[0];
+    return order;
+  };
+
+  /**
    * @see https://devdocs.magento.com/swagger/#/salesOrderManagementV1/salesOrderManagementV1GetStatusGet
    * @param orderId
    * @returns {Promise<string>}

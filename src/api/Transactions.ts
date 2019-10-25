@@ -22,8 +22,7 @@ export class Transactions {
   };
 
   async getByTransactionId(transactionId: string): Promise<Transaction | undefined> {
-    let query = `&searchCriteria[filterGroups][0][filters][0][field]=txn_id&searchCriteria[filterGroups][0][filters][0][value]=${transactionId}`;
-
+    const query = `&searchCriteria[filterGroups][0][filters][0][field]=txn_id&searchCriteria[filterGroups][0][filters][0][value]=${transactionId}`;
     const transactions = await this.list(query);
     if (transactions.items && transactions.items[0]) {
       return transactions.items[0] as Transaction;
