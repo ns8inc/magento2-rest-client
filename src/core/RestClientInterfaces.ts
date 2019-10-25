@@ -3,6 +3,7 @@ export interface RestClientOptions {
   accessTokenSecret: string;
   consumerKey: string;
   consumerSecret: string;
+  logLevel?: RestLogLevel
   url: string,
 }
 
@@ -10,10 +11,17 @@ export interface RestApiHeaders {
   Authorization: string
 }
 
+export enum RestLogLevel {
+  ERROR = 'error',
+  INFO = 'info',
+  NONE = 'none',
+}
+
 export interface RestApiOptions {
   body?: any
   headers: RestApiHeaders,
   json: boolean,
+  logLevel?: RestLogLevel
   method: string,
   url: string,
 }

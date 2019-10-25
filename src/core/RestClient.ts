@@ -1,37 +1,41 @@
+import * as createError from 'http-errors';
+import * as StackTracey from 'stacktracey';
 import {
-  Logger,
-  RestClientOptions,
   Addresses,
   Attributes,
+  Cart,
   Categories,
-  Products,
-  ProductMedia,
   CategoryProducts,
   ConfigurableChildren,
   ConfigurableOptions,
+  Customers,
+  Directory,
+  Logger,
+  Orders,
+  ProductMedia,
+  Products,
+  RestApiError,
+  RestApiOptions,
+  RestApiStackTraces,
+  RestClientOptions,
+  RestLogLevel,
+  Reviews,
   StockItems,
   TaxRates,
   TaxRules,
-  Customers,
-  Cart,
-  Transactions,
-  Directory,
-  Reviews,
-  Orders,
-  RestApiOptions,
-  RestApiStackTraces
-} from '..';
-
-import * as createError from 'http-errors';
+  Transactions
+  } from '..';
 import { IncomingMessage } from 'http';
-import * as StackTracey  from 'stacktracey';
-import { RestApiError } from './RestClientInterfaces';
+
+
 const OAuth = require('oauth-1.0a');
 const request = require('request');
 
 const MAGENTO_API_VERSION = 'V1';
 
 export class RestClient {
+  private logLevel: RestLogLevel;
+
   public addresses: Addresses;
   public apiVersion: any;
   public attributes: Attributes;
@@ -71,7 +75,8 @@ export class RestClient {
       public: options.accessToken,
       secret: options.accessTokenSecret
     };
-    this.logger = new Logger();
+    this.logLevel = options.logLevel || RestLogLevel.NONE;
+    this.logger = new Logger(this.logLevel);
 
     this.addresses = new Addresses(this);
     this.attributes = new Attributes(this);
