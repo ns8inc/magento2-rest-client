@@ -22,48 +22,12 @@ const execute = async () => {
   if (!fs.existsSync('test/model_data/orders/comments')) fs.mkdirSync('test/model_data/orders/comments');
   if (!fs.existsSync('test/model_data/transactions')) fs.mkdirSync('test/model_data/transactions');
 
-  allExistingOrders = await client.orders.list();
-  fs.writeFileSync('test/model_data/orders/orders.json', JSON.stringify(allExistingOrders, null, 2))
-  console.log('Found all orders');
 
-  allExistingTransactions = await client.transactions.list();
-  fs.writeFileSync('test/model_data/transactions/transactions.json', JSON.stringify(allExistingTransactions, null, 2))
-  console.log('Found all transactions');
-
-  const firstOrder = allExistingOrders.items[0];
-
-  const firstOrderById = await client.orders.get(firstOrder.entity_id);
+  //const firstOrderById = await client.orders.get(107);
   console.log('get order by id');
 
-  // if (firstOrderById.state == OrderState.ON_HOLD) {
-  //   await client.orders.unhold(firstOrder.entity_id);
-  //   console.log('Hold order');
-  // } else {
-  //   await client.orders.hold(firstOrder.entity_id);
-  //   console.log('Hold order');
-  // }
-
-  await client.orders.postComment(firstOrder.entity_id, {
-    comment: 'test comment',
-    created_at: new Date(),
-    status: OrderState.PAYMENT_REVIEW,
-  });
-  console.log('order comment added');
-
-  allExistingOrders.items.forEach(async (order) => {
-    const allExistingComments = await client.orders.getComments(order.entity_id);
-    fs.writeFileSync(`test/model_data/orders/comments/order_${order.entity_id}_comments.json`, JSON.stringify(allExistingComments, null, 2))
-    console.log('Found all comments');
-  })
-
-
-  const first = allExistingTransactions.items[0];
-  await client.transactions.getByTransactionId(first.txn_id);
-  console.log('get transaction by id');
-  await client.customers.get(1);
-  console.log('get customer by id');
-  await client.addresses.get(1);
-  console.log('get address by id');
+  const firstOrderByIncId = await client.post('/Protect/score/118/2');
+  console.log(firstOrderByIncId)
 }
 execute().then(() => {
   console.log('done');

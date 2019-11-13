@@ -105,6 +105,15 @@ export class RestClient {
     return this.apiCall(request_data, request_token);
   }
 
+  public patch(resourceUrl, data = {}, request_token = '') {
+    const request_data = {
+      url: this.createUrl(resourceUrl),
+      method: 'PATCH',
+      body: data
+    };
+    return this.apiCall(request_data, request_token);
+  }
+
   public post(resourceUrl, data = {}, request_token = '') {
     const request_data = {
       url: this.createUrl(resourceUrl),
