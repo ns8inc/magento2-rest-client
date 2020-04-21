@@ -1,3 +1,8 @@
+![npm](https://img.shields.io/npm/v/@ns8/magento2-rest-client)
+![npm](https://img.shields.io/npm/l/@ns8/magento2-rest-client)
+![npm](https://img.shields.io/npm/dt/@ns8/magento2-rest-client)
+![npm](https://img.shields.io/npm/dm/@ns8/magento2-rest-client)
+
 # Magento2 REST client
 
 This Node.js library enables JavaScript applications to communicate with Magento2 sites using their REST API.
